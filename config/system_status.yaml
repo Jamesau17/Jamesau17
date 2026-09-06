@@ -45,9 +45,17 @@ components:
     note: "See EXTERNAL_DATA.md."
 
   r4_circuit_breaker:
-    status: NON_OPERATIONAL
-    note: "Principle exists per CONSTITUTION.md; implementation not specified."
+    status: LOCKED
+    note: "Strategic specification LOCKED per Core Synchronization Patch 00.1 (CONSTITUTION.md §2): EUR 150 drawdown from High-Water Mark, blocks new entries/scaling, no automatic liquidation. Risk Engine evaluation code not yet implemented."
 
   economic_gate:
+    status: LOCKED
+    note: "Strategic specification LOCKED per Core Synchronization Patch 00.1 (CONSTITUTION.md §3): minimum EUR 200 net AND 4R, preferred EUR 300 net AND 6R, evaluated against current R_max. Risk Engine evaluation code not yet implemented."
+
+  r_max:
+    status: PROVISIONAL
+    note: "Conceptual definition LOCKED (CONSTITUTION.md §3a). Several dependencies remain TO_CALIBRATE/EXTERNAL_DATA_REQUIRED; see config/risk_rules.yaml r_max.dependencies."
+
+  risk_scale_review:
     status: NON_OPERATIONAL
-    note: "Threshold values recorded; computation/enforcement not specified."
+    note: "Protocol not yet specified per CONSTITUTION.md §3b."

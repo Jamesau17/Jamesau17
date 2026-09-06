@@ -31,7 +31,7 @@ No automatic broker execution is authorized in V1. The pipeline terminates at a 
 ## Module Responsibilities (`src/`)
 
 - `domain/` — core domain types shared across modules (instrument identity, monetary values, status enums). No trading logic.
-- `risk/` — risk-rule representations and hard-gate evaluation (R1–R4). Values sourced from `config/risk_rules.yaml`; nothing hardcoded or invented.
+- `risk/` — risk-rule representations and hard-gate evaluation (R1–R4, economic gate, R_max). Values sourced from `config/risk_rules.yaml`; nothing hardcoded or invented. R4 and the economic gate strategic definitions are `LOCKED` (`CONSTITUTION.md` §2–§3a); no evaluation logic is implemented in this repository state.
 - `data/` — data ingestion and provenance modeling (see `DATA_REQUIREMENTS.md`). No live data sources connected in this bootstrap.
 - `structure/` — placeholder for future market-structure concepts (swing structure, MSS, BOS, FVG, etc.). Contains no definitions in this bootstrap — `NON_OPERATIONAL`.
 - `events/` — placeholder for future event/materiality pipeline (`TRUTH → MATERIALITY → ... → POSITION`). No transition logic in this bootstrap — `NON_OPERATIONAL`.

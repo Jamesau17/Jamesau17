@@ -27,10 +27,23 @@ Status: `EXTERNAL_DATA_REQUIRED` for all items above. None may be filled with as
 
 No market data source (price series, event calendar) has been selected or connected. `EXTERNAL_DATA_REQUIRED`.
 
-## R4 Circuit-Breaker Specification
+## R4 Circuit-Breaker — Strategic Specification LOCKED
 
-`CONSTITUTION.md` records that a circuit-breaker principle (R4) exists but its implementation is governed by a specification not yet supplied. `EXTERNAL_DATA_REQUIRED` / pending validated technical specification.
+R4's strategic definition (EUR 150 drawdown from High-Water Mark; blocks new entries/scaling-in; requires reanalysis of open positions; no automatic liquidation) is `LOCKED` per `CONSTITUTION.md` §2 (Core Synchronization Patch 00.1, 2026-09-06). It is **not** `EXTERNAL_DATA_REQUIRED`.
 
-## Economic-Gate Specification
+## Economic Gate — Strategic Specification LOCKED
 
-The exact computation and enforcement of the opportunity-potential economic gate (EUR 200 minimum / EUR 300 preferred, net) is governed by a specification not yet supplied. `EXTERNAL_DATA_REQUIRED` / pending validated technical specification.
+The economic gate's strategic definition (minimum EUR 200 net AND 4R; preferred EUR 300 net AND 6R; evaluated against current R_max) is `LOCKED` per `CONSTITUTION.md` §3 (Core Synchronization Patch 00.1, 2026-09-06). It is **not** `EXTERNAL_DATA_REQUIRED`.
+
+## R_max Dependencies — Partially External/Uncalibrated
+
+R_max's conceptual definition is `LOCKED` (`CONSTITUTION.md` §3a), but the following dependencies remain unresolved and MUST NOT be guessed:
+
+- contractual instrument constraints (minimum lot, lot increment, tick/point value, margin) — `EXTERNAL_DATA_REQUIRED` (see Vantage section above)
+- cluster/correlation constraints — `TO_CALIBRATE`
+- minimum trade size per instrument — `EXTERNAL_DATA_REQUIRED`
+- execution constraints — `EXTERNAL_DATA_REQUIRED`
+
+## RISK_SCALE_REVIEW Protocol
+
+`CONSTITUTION.md` §3b records that any future increase of risk limits requires a separate documented `RISK_SCALE_REVIEW`. Its protocol and empirical requirements are not yet supplied. `NON_OPERATIONAL` pending specification (not `EXTERNAL_DATA_REQUIRED` — this is a governance protocol, not factual/contractual data).

@@ -28,25 +28,87 @@ risk_rules:
     note: "Loss events recorded at realization/closure. Gains do not net against losses for R3."
     status: LOCKED
   R4_circuit_breaker:
-    value: null
-    status: NON_OPERATIONAL
-    note: "Principle exists per CONSTITUTION.md; implementation not yet specified. Must not be invented."
+    threshold_drawdown_from_hwm:
+      value: 150
+      currency: EUR
+      status: LOCKED
+    high_water_mark_definition:
+      value: "historical maximum observed account equity (realized PnL + unrealized PnL)"
+      status: LOCKED
+    trigger_actions:
+      value:
+        - "block all new entries"
+        - "block all scaling-in/additional entries"
+        - "require immediate reanalysis of every currently open position"
+      status: LOCKED
+    automatic_liquidation_on_threshold:
+      value: false
+      status: LOCKED
+      note: "R4 does not automatically liquidate existing positions. Each open position is re-evaluated against its own thesis and invalidation criteria. No second liquidation threshold exists."
 
 economic_gate:
-  minimum_opportunity_potential:
-    value: 200
-    currency: EUR
-    basis: net
-    status: LOCKED
-  preferred_opportunity_potential:
-    value: 300
-    currency: EUR
-    basis: net
-    status: LOCKED
+  basis: "evaluated against current R_max (CONSTITUTION.md §3a); recalculated immediately before execution"
+  minimum:
+    net_potential:
+      value: 200
+      currency: EUR
+      basis: net
+      status: LOCKED
+    net_r_multiple:
+      value: 4
+      unit: R
+      status: LOCKED
+    note: "Both conditions mandatory."
+  preferred:
+    net_potential:
+      value: 300
+      currency: EUR
+      basis: net
+      status: LOCKED
+    net_r_multiple:
+      value: 6
+      unit: R
+      status: LOCKED
+    note: "Preference criteria, not permission to violate a hard gate. Hard Gates > Score > Preference."
   implementation:
     value: null
     status: NON_OPERATIONAL
-    note: "Exact gate computation/enforcement governed by a specification not yet supplied."
+    note: "Strategic thresholds are LOCKED (see minimum/preferred above); the Risk Engine evaluation code implementing this gate is not yet built."
+
+r_max:
+  definition:
+    value: "maximum currently executable planned monetary risk for the trade after applying all relevant hard constraints"
+    status: LOCKED
+  dependencies:
+    R1: LOCKED
+    remaining_R2_capacity: LOCKED
+    cluster_correlation_constraints:
+      value: null
+      status: TO_CALIBRATE
+    contractual_instrument_constraints:
+      value: null
+      status: EXTERNAL_DATA_REQUIRED
+    minimum_trade_size:
+      value: null
+      status: EXTERNAL_DATA_REQUIRED
+    margin_constraints:
+      value: null
+      status: EXTERNAL_DATA_REQUIRED
+    execution_constraints:
+      value: null
+      status: EXTERNAL_DATA_REQUIRED
+  no_r_max_definable_outcome:
+    value: "NO_TRADE"
+    status: LOCKED
+
+risk_scaling:
+  automatic_increase_with_capital_growth:
+    value: false
+    status: LOCKED
+  risk_scale_review_protocol:
+    value: null
+    status: NON_OPERATIONAL
+    note: "Any future increase of risk limits requires a documented RISK_SCALE_REVIEW. Protocol not yet specified; must not be invented."
 
 strategy_b:
   holding_horizon_days:
