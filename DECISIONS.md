@@ -29,3 +29,12 @@ Format per entry:
 - Reason: The strategic authority supplied these specifications; the repository must reflect them without reinterpretation, optimization, or invention of the remaining undefined dependencies (R_max's contractual/margin/cluster dependencies remain `TO_CALIBRATE`/`EXTERNAL_DATA_REQUIRED`).
 - Affected components: `CONSTITUTION.md` (§2, §3, new §3a, §3b, §11), `EXTERNAL_DATA.md`, `PROJECT_STATE.md`, `ARCHITECTURE.md`, `config/risk_rules.yaml`, `config/system_status.yaml`, `tests/test_governance_config.py`.
 - Authority: Current task prompt (Core Synchronization Patch 00.1), which the prompt itself states supersedes the prior `EXTERNAL_DATA_REQUIRED`/`NON_OPERATIONAL`/`TO_CALIBRATE`/`UNKNOWN` classification of R4 and the economic gate's strategic definition. Actual broker/account/instrument specifications remain `EXTERNAL_DATA_REQUIRED` and are unaffected by this decision.
+
+---
+
+## 2026-09-06 — C0-SCREEN implemented: capital/instrument feasibility engine
+
+- Decision: Implement C0-SCREEN, a preliminary feasibility screen testing whether candidate instruments are realistically compatible with account capital, R1, and R2-residual scenarios, using a predeclared set of PROVISIONAL ATR-based stop-distance proxies (H4 ATR14×{1.0,1.5,2.0}, D1 ATR14×{0.5,1.0}). No trading signal, entry logic, or PnL/performance metric was implemented. Classification thresholds (CANDIDATE vs CONSTRAINED) remain configuration-driven and default to `null`/`TO_CALIBRATE` — never invented. R_max is intentionally not calculated or compared against at this stage (would be circular per the minimum-size admissibility ordering in `CONSTITUTION.md` §3a).
+- Reason: Mission C0-SCREEN requires an empirical feasibility read before the final deterministic market-structure engine (Bloc A) exists, without pre-empting strategy, calibration, or broker-data decisions that remain external.
+- Affected components: `src/data/{models,csv_loader,quality}.py`, `src/risk/{contract_specs,fx,calculators}.py`, `src/screening/{atr,c0_screen,report}.py`, `scripts/run_c0_screen.py`, `tests/{test_market_data_quality,test_contract_specs,test_minimum_size_risk,test_c0_screen}.py`, `ARCHITECTURE.md`, `PROJECT_STATE.md`.
+- Authority: Current task prompt (C0-SCREEN mission), constrained by `CONSTITUTION.md` (R1/R2/R_max definitions, LOCKED and unaffected) and `DECISIONS.md` (Core Synchronization Patch 00.1). No LOCKED rule was changed. R2-residual scenario values (EUR 100/75/50/25) are analytical reporting scenarios only, not Constitution thresholds.

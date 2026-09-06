@@ -8,6 +8,7 @@ Tracks current implementation state only. Not a planning document.
 - Governance documents created: `CONSTITUTION.md`, `DECISIONS.md`, `PROJECT_STATE.md`, `ARCHITECTURE.md`, `DATA_REQUIREMENTS.md`, `EXTERNAL_DATA.md`.
 - `config/risk_rules.yaml` created with LOCKED values recorded and unresolved parameters marked `null` with status metadata (never guessed).
 - Core Synchronization Patch 00.1 applied: R4 and economic gate synchronized as `LOCKED` per `DECISIONS.md` (2026-09-06).
+- C0-SCREEN capital/instrument feasibility engine implemented (`src/data/`, `src/risk/contract_specs.py`, `src/risk/fx.py`, `src/risk/calculators.py`, `src/screening/`). Uses PROVISIONAL ATR-based stop-distance proxies only; produces no PnL/performance metric. ENGINE_STATUS: PASS. EMPIRICAL_RUN_STATUS: BLOCKED_EXTERNAL_DATA (no real OHLCV/contract-spec inputs supplied yet).
 - `config/system_status.yaml` created recording per-component operational status.
 - Bootstrap/governance tests created under `tests/`.
 
@@ -39,4 +40,5 @@ Tracks current implementation state only. Not a planning document.
 
 ## NEXT
 
-- C0-SCREEN specification/implementation (see mission recommendation at end of this bootstrap).
+- C0-FINAL structural compatibility measurement (after Bloc A / final market-structure engine exists).
+- Supply real Vantage contract specifications and real OHLCV data to unblock an actual C0-SCREEN empirical run.
