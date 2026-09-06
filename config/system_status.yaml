@@ -1,0 +1,53 @@
+# Per-component operational status.
+# Allowed status values (see CONSTITUTION.md):
+# LOCKED, TO_CALIBRATE, EXTERNAL_DATA_REQUIRED, MEASUREMENT_REQUIRED,
+# NON_OPERATIONAL, PROVISIONAL, VALIDATED
+
+components:
+  governance_documents:
+    status: VALIDATED
+    note: "CONSTITUTION.md, DECISIONS.md, PROJECT_STATE.md, ARCHITECTURE.md, DATA_REQUIREMENTS.md, EXTERNAL_DATA.md created."
+
+  config_risk_rules:
+    status: PROVISIONAL
+    note: "LOCKED values recorded from supplied strategic context; unresolved parameters explicitly null."
+
+  domain_module:
+    status: NON_OPERATIONAL
+    note: "Package scaffold only, no domain types implemented."
+
+  risk_module:
+    status: NON_OPERATIONAL
+    note: "Package scaffold only, no hard-gate evaluation implemented."
+
+  data_module:
+    status: NON_OPERATIONAL
+    note: "Package scaffold only, no ingestion or provenance model implemented."
+
+  structure_module:
+    status: NON_OPERATIONAL
+    note: "Package scaffold only. No market-structure concepts defined (by design)."
+
+  events_module:
+    status: NON_OPERATIONAL
+    note: "Package scaffold only. No event/materiality pipeline logic implemented (by design)."
+
+  journal_module:
+    status: NON_OPERATIONAL
+    note: "Package scaffold only. SQLite persistence not yet implemented."
+
+  broker_execution:
+    status: NON_OPERATIONAL
+    note: "No automatic broker execution authorized in V1. No broker connection exists."
+
+  vantage_compatibility:
+    status: EXTERNAL_DATA_REQUIRED
+    note: "See EXTERNAL_DATA.md."
+
+  r4_circuit_breaker:
+    status: NON_OPERATIONAL
+    note: "Principle exists per CONSTITUTION.md; implementation not specified."
+
+  economic_gate:
+    status: NON_OPERATIONAL
+    note: "Threshold values recorded; computation/enforcement not specified."

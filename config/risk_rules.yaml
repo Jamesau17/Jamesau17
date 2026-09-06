@@ -1,0 +1,60 @@
+# Machine-readable risk parameters.
+# Values are populated ONLY when explicitly validated (see CONSTITUTION.md).
+# Unknown/unresolved parameters use `value: null` with explicit `status` metadata.
+# Never replace an unknown value with an estimate, convention, or guess.
+
+account:
+  reference_capital:
+    value: 1000
+    currency: EUR
+    status: LOCKED
+  max_simultaneous_positions:
+    value: 2
+    status: LOCKED
+
+risk_rules:
+  R1_max_risk_per_position:
+    value: 50
+    currency: EUR
+    status: LOCKED
+  R2_max_aggregate_open_risk:
+    value: 100
+    currency: EUR
+    status: LOCKED
+  R3_max_realized_loss_rolling_window:
+    value: 100
+    currency: EUR
+    window_days: 14
+    note: "Loss events recorded at realization/closure. Gains do not net against losses for R3."
+    status: LOCKED
+  R4_circuit_breaker:
+    value: null
+    status: NON_OPERATIONAL
+    note: "Principle exists per CONSTITUTION.md; implementation not yet specified. Must not be invented."
+
+economic_gate:
+  minimum_opportunity_potential:
+    value: 200
+    currency: EUR
+    basis: net
+    status: LOCKED
+  preferred_opportunity_potential:
+    value: 300
+    currency: EUR
+    basis: net
+    status: LOCKED
+  implementation:
+    value: null
+    status: NON_OPERATIONAL
+    note: "Exact gate computation/enforcement governed by a specification not yet supplied."
+
+strategy_b:
+  holding_horizon_days:
+    min: 15
+    max: 35
+    status: LOCKED
+
+vantage_broker_specification:
+  value: null
+  status: EXTERNAL_DATA_REQUIRED
+  note: "See EXTERNAL_DATA.md for the full list of required fields."
